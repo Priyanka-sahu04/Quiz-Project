@@ -33,10 +33,9 @@ const QuizForm = () => {
         difficulty,
         topic,
         count,
-        questions: data.results,
       };
 
-      localStorage.setItem('quizData', JSON.stringify(quiz));
+      localStorage.setItem('quizData', JSON.stringify(data.results));
   
       setQuizReady(true);
     } catch (error) {
