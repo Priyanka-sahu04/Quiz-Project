@@ -80,12 +80,23 @@ const QuizPage = () => {
         <p>No quiz data found. Please go back and generate a quiz.</p>
       ) : (
         <div className="p-4 border rounded-lg bg-gray-50 mb-4">
-          <h3
-            className="font-semibold"
-            dangerouslySetInnerHTML={{
-              __html: `${currentQuestionIndex + 1}. ${currentQuestion.question}`,
-            }}
-          />
+          <div className="mb-2">
+          <div className="text-sm text-gray-600 mt-1">
+              <span className="mr-3">
+                <strong>Difficulty:</strong> {currentQuestion.difficulty?.toUpperCase()}
+              </span>
+              <span>
+                <strong>Topic:</strong> {currentQuestion.category}
+              </span>
+            </div>
+            <h3
+              className="font-semibold text-lg mt-5"
+              dangerouslySetInnerHTML={{
+                __html: `${currentQuestionIndex + 1}. ${currentQuestion.question}`,
+              }}
+            />
+          </div>
+
           <ul className="mt-2 space-y-2">
             {shuffledOptions.map((option, idx) => (
               <li
