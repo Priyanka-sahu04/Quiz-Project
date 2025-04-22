@@ -1,58 +1,7 @@
-// // src/pages/SavedQuizzes.jsx
-// import React from 'react';
-// import { useNavigate } from 'react-router-dom';
-
-// const SavedQuizzes = () => {
-//   const navigate = useNavigate();
-//   const savedQuizzes = JSON.parse(localStorage.getItem('savedQuizzes')) || [];
-
-//   const handleStart = (quiz) => {
-//     localStorage.setItem('quizData', JSON.stringify(quiz.questions));
-//     navigate('/quiz');
-//   };
-
-//   return (
-//     <div className="p-6 max-w-4xl mx-auto">
-//       <h2 className="text-2xl font-bold mb-4">Saved Quizzes</h2>
-//       {savedQuizzes.length === 0 ? (
-//         <p>No saved quizzes found.</p>
-//       ) : (
-//         <div className="space-y-4">
-//           {savedQuizzes.map((quiz, idx) => (
-//             <div key={quiz.id} className="border p-4 rounded bg-gray-50">
-//               <p><strong>Quiz #{idx + 1}</strong></p>
-//               <p>🧠 Topic: {quiz.topic}</p>
-//               <p>🔥 Difficulty: {quiz.difficulty}</p>
-//               <p>❓ Questions: {quiz.count}</p>
-//               <p>🕒 Saved on: {new Date(quiz.timestamp).toLocaleString()}</p>
-//               <button
-//                 onClick={() => handleStart(quiz)}
-//                 className="mt-2 bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
-//               >
-//                 Start This Quiz
-//               </button>
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default SavedQuizzes;
-
-
-
-
-
-
-
-
-
-
 // src/pages/SavedQuizzes.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Trash2, Play } from 'lucide-react';
 
 const SavedQuizzes = () => {
   const navigate = useNavigate();
@@ -75,31 +24,36 @@ const SavedQuizzes = () => {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Saved Quizzes</h2>
+    <div className="p-6 max-w-5xl mx-auto">
+      <h2 className="text-4xl font-extrabold text-center text-indigo-700 mb-8">📚 Saved Quizzes</h2>
+
       {quizzes.length === 0 ? (
-        <p>No saved quizzes found.</p>
+        <p className="text-center text-gray-600 text-lg">No saved quizzes found.</p>
       ) : (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {quizzes.map((quiz, idx) => (
-            <div key={quiz.id} className="border p-4 rounded bg-gray-50">
-              <p><strong>Quiz #{idx + 1}</strong></p>
-              <p>🧠 Topic: {quiz.topic}</p>
-              <p>🔥 Difficulty: {quiz.difficulty}</p>
-              <p>❓ Questions: {quiz.count}</p>
-              <p>🕒 Saved on: {new Date(quiz.timestamp).toLocaleString()}</p>
-              <div className="mt-3 flex gap-3">
+            <div
+              key={quiz.id}
+              className="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 transition hover:shadow-xl"
+            >
+              <h3 className="text-xl font-bold text-indigo-600 mb-2">Quiz #{idx + 1}</h3>
+              <p className="text-gray-700"><span className="font-semibold">🧠 Topic:</span> {quiz.topic}</p>
+              <p className="text-gray-700"><span className="font-semibold">🔥 Difficulty:</span> {quiz.difficulty}</p>
+              <p className="text-gray-700"><span className="font-semibold">❓ Questions:</span> {quiz.count}</p>
+              <p className="text-gray-700"><span className="font-semibold">🕒 Saved on:</span> {new Date(quiz.timestamp).toLocaleString()}</p>
+
+              <div className="mt-5 flex justify-between">
                 <button
                   onClick={() => handleStart(quiz)}
-                  className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
+                  className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
                 >
-                  Start This Quiz
+                  <Play size={18} /> Start Quiz
                 </button>
                 <button
                   onClick={() => handleRemove(quiz.id)}
-                  className="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700"
+                  className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
                 >
-                  Remove
+                  <Trash2 size={18} /> Remove
                 </button>
               </div>
             </div>
