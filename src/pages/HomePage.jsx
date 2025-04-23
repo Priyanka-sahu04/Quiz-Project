@@ -14,20 +14,20 @@ const HomePage = () => {
       <Navbar />
       <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-white px-6 md:px-20">
         {/* left Section */}
-        <div className="md:w-1/2 mt-10 md:mt-0">
+        <div className="md:w-1/2 w-full mt-10 md:mt-0">
           <img
-            src="https://imgv3.fotor.com/images/share/resize-a-landscape-image-with-Fotors-image-resizer.png"
+            src="https://img.freepik.com/premium-vector/student-chooses-correct-answer-test-online-quiz-e-learning-distance-education-concept-horizontal_48369-47035.jpg"
             alt="Quiz Illustration"
-            className="w-full max-w-md mx-auto"
+            className="w-170 h-140 mx-auto"
           />
         </div>
         
         {/* right Section */}
         <div className="text-center md:text-left md:w-1/2 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-purple-700">
-            Level Up Your Skills: Take the Programming Quiz
+          <h1 className="text-5xl md:text-6xl font-bold text-purple-700">
+            Level Up Your Skills
           </h1>
-          <p className="text-gray-700 text-lg">
+          <p className="text-gray-700 text-xl">
             Are you ready to put your programming prowess to the test? Whether you're a seasoned developer or just starting your coding journey, our quiz game is the perfect way to challenge yourself and have fun while learning.
           </p>
           <button
