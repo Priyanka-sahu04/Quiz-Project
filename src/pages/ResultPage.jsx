@@ -27,7 +27,7 @@ const ResultPage = () => {
   }, []);
 
   const handleBackToHome = () => {
-    navigate('/');
+    navigate('/quiz-form');
   };
 
   return (
