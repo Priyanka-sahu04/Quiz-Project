@@ -74,7 +74,7 @@ const QuizForm = () => {
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-100 p-6 flex items-center justify-center">
         <div className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-8">
-          <h1 className="text-3xl font-bold text-center text-blue-800 mb-6">Generate Your Quiz</h1>
+          <h1 className="text-4xl font-bold text-center text-teal-800 mb-6">Generate Your Quiz</h1>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block font-semibold text-gray-700 mb-1">Difficulty</label>
@@ -82,7 +82,7 @@ const QuizForm = () => {
                 name="difficulty"
                 value={formData.difficulty}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200"
+                className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-teal-200"
               >
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
@@ -96,7 +96,7 @@ const QuizForm = () => {
                 name="topic"
                 value={formData.topic}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200"
+                className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-teal-200"
               >
                 <option value="18">Science: Computers</option>
                 <option value="9">General Knowledge</option>
@@ -118,7 +118,7 @@ const QuizForm = () => {
                 name="count"
                 value={formData.count}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200"
+                className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-teal-200"
                 min="1"
                 max="20"
               />
@@ -130,7 +130,7 @@ const QuizForm = () => {
               className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-white text-lg font-semibold transition ${
                 loading
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-blue-600 hover:bg-blue-700'
+                  : 'bg-teal-700 hover:bg-teal-800'
               }`}
             >
               {loading && (
@@ -163,14 +163,14 @@ const QuizForm = () => {
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
               <button
                 onClick={handleStartQuiz}
-                className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition text-lg"
+                className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition text-lg"
               >
                 Start Quiz
               </button>
 
               <button
                 onClick={handleSaveQuiz}
-                className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600 transition text-lg"
+                className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition text-lg"
               >
                 Save Quiz
               </button>

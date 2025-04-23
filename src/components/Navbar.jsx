@@ -49,14 +49,14 @@ const Navbar = () => {
             </Link>
             <button
               onClick={handleLogout}
-              className="bg-white text-green-600 px-6 py-2 rounded-md font-semibold shadow hover:bg-gray-100 transition"
+              className="bg-white text-teal-600 px-6 py-2 rounded-md font-semibold shadow hover:bg-gray-100 transition"
             >
               Logout
             </button>
           </div>
 
           {/* Profile Circle (Always visible) */}
-          <div className="w-10 h-10 bg-white text-green-600 font-bold flex items-center justify-center rounded-full shadow">
+          <div className="w-10 h-10 bg-white text-teal-600 font-bold flex items-center justify-center rounded-full shadow">
             {firstLetter}
           </div>
 
@@ -86,7 +86,7 @@ const Navbar = () => {
               handleLogout();
               toggleMenu();
             }}
-            className="w-full bg-white text-green-600 px-6 py-2 rounded-md font-semibold shadow hover:bg-gray-100"
+            className="w-full bg-white text-teal-600 px-6 py-2 rounded-md font-semibold shadow hover:bg-gray-100"
           >
             Logout
           </button>

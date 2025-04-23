@@ -24,7 +24,7 @@ const HomePage = () => {
         
         {/* right Section */}
         <div className="text-center md:text-left md:w-1/2 space-y-6">
-          <h1 className="text-5xl md:text-6xl font-bold text-purple-700">
+          <h1 className="text-5xl md:text-6xl font-bold text-teal-700">
             Level Up Your Skills
           </h1>
           <p className="text-gray-700 text-xl">
@@ -32,7 +32,7 @@ const HomePage = () => {
           </p>
           <button
             onClick={handleStart}
-            className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
+            className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold py-3 px-8 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
           >
             TAKE QUIZ
           </button>

@@ -31,9 +31,9 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-400 to-purple-600 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br bg-teal-50 flex items-center justify-center px-4">
       <div className="bg-white p-10 rounded-2xl shadow-xl max-w-md w-full">
-        <h2 className="text-2xl font-bold mb-6 text-center text-purple-700">
+        <h2 className="text-3xl font-bold mb-6 text-center text-teal-700">
           {isSignup ? 'Create an Account' : 'Login to Your Account'}
         </h2>
         <form onSubmit={handleAuth} className="space-y-4">
@@ -42,7 +42,7 @@ const AuthPage = () => {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-400"
             required
           />
           <input
@@ -50,13 +50,13 @@ const AuthPage = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-400"
             required
           />
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {error && <p className="text-rose-500 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition"
+            className="w-full bg-teal-600 text-white font-bold py-2 rounded-md hover:bg-teal-700 transition"
           >
             {isSignup ? 'Sign Up' : 'Login'}
           </button>
@@ -66,7 +66,7 @@ const AuthPage = () => {
           {isSignup ? 'Already have an account?' : "Don't have an account?"}{' '}
           <button
             onClick={() => setIsSignup(!isSignup)}
-            className="text-purple-600 font-semibold hover:underline"
+            className="text-teal-600 font-semibold hover:underline"
           >
             {isSignup ? 'Login' : 'Sign Up'}
           </button>

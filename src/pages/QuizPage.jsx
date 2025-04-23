@@ -99,7 +99,7 @@ const QuizPage = () => {
   const currentSelected = selectedAnswers[currentQuestionIndex];
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
+    <div className="p-6 mt-30 max-w-3xl mx-auto">
       <h2 className="text-3xl font-bold mb-6 text-center text-indigo-700">Take the Quiz</h2>
 
       {/* Timer */}
