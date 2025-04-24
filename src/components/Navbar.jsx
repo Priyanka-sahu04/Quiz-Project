@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -30,21 +31,19 @@ const Navbar = () => {
     <nav className="bg-teal-700 text-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold hover:text-yellow-300">
-          Quiz App
-        </Link>
+        <img src={ logo } className="h-21" />
 
         {/* Right Section */}
         <div className="flex items-center space-x-4">
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-4 text-lg items-center">
-            <Link to="/home" className="hover:text-yellow-300 transition">
+            <Link to="/home" className="hover:text-yellow-300 text-xl transition">
               Home
             </Link>
-            <Link to="/quiz-form" className="hover:text-yellow-300 transition">
+            <Link to="/quiz-form" className="hover:text-yellow-300 text-xl transition">
               Create Quiz
             </Link>
-            <Link to="/saved-quizzes" className="hover:text-yellow-300 transition">
+            <Link to="/saved-quizzes" className="hover:text-yellow-300 text-xl transition">
               Saved Quizzes
             </Link>
             <button
@@ -56,7 +55,7 @@ const Navbar = () => {
           </div>
 
           {/* Profile Circle (Always visible) */}
-          <div className="w-10 h-10 bg-white text-teal-600 font-bold flex items-center justify-center rounded-full shadow">
+          <div className="w-12 h-12 bg-white text-2xl text-teal-600 font-bold flex items-center justify-center rounded-full shadow">
             {firstLetter}
           </div>
 

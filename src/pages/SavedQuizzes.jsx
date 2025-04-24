@@ -28,6 +28,19 @@ const SavedQuizzes = () => {
     navigate('/quiz-form'); // Change route based on your setup page
   };
 
+  const categoryMap = {
+    "18": "Science: Computers",
+    "9": "General Knowledge",
+    "21": "Sports",
+    "23": "History",
+    "17": "Science & Nature",
+    "22": "Geography",
+    "11": "Film",
+    "12": "Music",
+    "15": "Video Games",
+    "19": "Science: Mathematics",
+  };
+
   return (
     <div>
       <Navbar />
@@ -52,21 +65,21 @@ const SavedQuizzes = () => {
                 className="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 transition hover:shadow-xl"
               >
                 <h3 className="text-xl font-bold text-indigo-600 mb-2">Quiz #{idx + 1}</h3>
-                <p className="text-gray-700"><span className="font-semibold">🧠 Topic:</span> {quiz.topic}</p>
-                <p className="text-gray-700"><span className="font-semibold">🔥 Difficulty:</span> {quiz.difficulty}</p>
-                <p className="text-gray-700"><span className="font-semibold">❓ Questions:</span> {quiz.count}</p>
-                <p className="text-gray-700"><span className="font-semibold">🕒 Saved on:</span> {new Date(quiz.timestamp).toLocaleString()}</p>
+                <p className="text-gray-700 text-xl"><span className="font-semibold">🧠 Topic:</span> {categoryMap[quiz.topic] || quiz.topic}</p>
+                <p className="text-gray-700 text-xl"><span className="font-semibold">🔥 Difficulty:</span> {quiz.difficulty}</p>
+                <p className="text-gray-700 text-xl"><span className="font-semibold">❓ Questions:</span> {quiz.count}</p>
+                <p className="text-gray-700 text-xl"><span className="font-semibold">🕒 Saved on:</span> {new Date(quiz.timestamp).toLocaleString()}</p>
 
                 <div className="mt-5 flex justify-between">
                   <button
                     onClick={() => handleStart(quiz)}
-                    className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+                    className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
                   >
                     <Play size={18} /> Start Quiz
                   </button>
                   <button
                     onClick={() => handleRemove(quiz.id)}
-                    className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+                    className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
                   >
                     <Trash2 size={18} /> Remove
                   </button>

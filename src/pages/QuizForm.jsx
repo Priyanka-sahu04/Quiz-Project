@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { PlayCircle, Save } from 'lucide-react';
 
 const QuizForm = () => {
   const [formData, setFormData] = useState({
@@ -127,10 +128,10 @@ const QuizForm = () => {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-white text-lg font-semibold transition ${
+              className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-white text-lg font-semibold transition ${
                 loading
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-teal-700 hover:bg-teal-800'
+                  : 'bg-gradient-to-r from-blue-500 to-purple-600 text-xl'
               }`}
             >
               {loading && (
@@ -163,16 +164,16 @@ const QuizForm = () => {
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
               <button
                 onClick={handleStartQuiz}
-                className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition text-lg"
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-700 text-white px-6 py-2 rounded-xl hover:bg-teal-700 transition text-lg"
               >
-                Start Quiz
+                <PlayCircle size={22} /> Start Quiz
               </button>
-
+            
               <button
                 onClick={handleSaveQuiz}
-                className="bg-teal-600 text-white px-6 py-2 rounded-lg hover:bg-teal-700 transition text-lg"
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-teal-700 to-emerald-500 text-white px-6 py-2 rounded-xl hover:bg-teal-700 transition text-lg"
               >
-                Save Quiz
+                <Save size={22} /> Save Quiz
               </button>
             </div>
           )}

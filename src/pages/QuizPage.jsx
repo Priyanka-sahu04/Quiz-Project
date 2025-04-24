@@ -113,7 +113,7 @@ const QuizPage = () => {
         <p className="text-center text-red-600">No quiz data found. Please go back and generate a quiz.</p>
       ) : (
         <div className="p-6 border rounded-2xl bg-gradient-to-br from-white to-gray-100 shadow-lg">
-          <div className="mb-4 text-sm text-gray-600">
+          <div className="mb-4 text-lg text-gray-600">
             <span className="mr-3">
               <strong>Difficulty:</strong> {currentQuestion.difficulty?.toUpperCase()}
             </span>
@@ -149,7 +149,7 @@ const QuizPage = () => {
               className={`px-5 py-2 rounded-lg font-semibold ${
                 currentQuestionIndex === 0
                   ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
+                  : 'bg-gradient-to-r from-blue-700 to-purple-500 text-white hover:bg-blue-700'
               }`}
             >
               Previous
@@ -159,8 +159,8 @@ const QuizPage = () => {
               onClick={handleNext}
               className={`px-5 py-2 rounded-lg font-semibold ${
                 currentQuestionIndex >= quizData.length - 1
-                  ? 'bg-purple-600 text-white hover:bg-purple-700'
-                  : 'bg-green-600 text-white hover:bg-green-700'
+                  ? 'bg-gradient-to-r from-purple-500 to-blue-700 text-white'
+                  : 'bg-gradient-to-r from-emerald-500 to-teal-700 text-white'
               }`}
             >
               {currentQuestionIndex >= quizData.length - 1 ? 'Finish' : 'Next'}

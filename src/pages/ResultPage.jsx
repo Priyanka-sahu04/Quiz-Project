@@ -36,7 +36,7 @@ const ResultPage = () => {
       <Navbar />
       <div className="p-6 max-w-3xl mx-auto">
         <div className="p-6 border rounded-2xl bg-gradient-to-br from-white to-gray-100 shadow-lg text-center">
-          <h2 className="text-3xl font-bold text-indigo-700 mb-4">Quiz Result</h2>
+          <h2 className="text-3xl font-bold text-indigo-700 mb-4">Your Result</h2>
           <p className="text-lg mb-2">Correct Answers: <span className="font-semibold">{score}</span></p>
           <p className="text-lg mb-2">Total Questions: <span className="font-semibold">{total}</span></p>
           <p className="text-lg mb-4">
@@ -46,14 +46,14 @@ const ResultPage = () => {
           <div className="flex justify-center flex-wrap gap-4 mt-4">
             <button
               onClick={handleBackToHome}
-              className="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
             >
               Back to Home
             </button>
 
             <button
               onClick={() => setShowAnswers(!showAnswers)}
-              className="bg-green-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-green-700 transition"
+              className="bg-gradient-to-r from-emerald-500 to-teal-700 text-white px-5 py-2 rounded-lg font-semibold hover:bg-green-700 transition"
             >
               {showAnswers ? 'Hide Answers' : 'View Answers'}
             </button>
@@ -70,16 +70,16 @@ const ResultPage = () => {
               return (
                 <div key={index} className="mb-6 pb-4 border-b">
                   <p
-                    className="font-medium text-gray-800 mb-2"
+                    className="text-lg font-medium text-gray-800 mb-2"
                     dangerouslySetInnerHTML={{ __html: `Q${index + 1}: ${question.question}` }}
                   />
-                  <p>
+                  <p className='text-lg'>
                     Your Answer: <span className={isCorrect ? 'text-green-600 font-semibold' : 'text-red-600 font-semibold'}>
                       {userAnswer || 'No Answer'}
                     </span>
                   </p>
                   {!isCorrect && (
-                    <p>
+                    <p className='text-lg'>
                       Correct Answer: <span className="text-green-700 font-semibold">{question.correct_answer}</span>
                     </p>
                   )}
