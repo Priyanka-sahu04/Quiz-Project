@@ -13,16 +13,16 @@ const AuthPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true); // <-- NEW
 
-  // ✅ Redirect if already logged in
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         navigate('/home');
+      } else {
+        setLoading(false); // <-- Stop loading only if no user
       }
     });
-
-    // Cleanup listener on unmount
     return () => unsubscribe();
   }, [navigate]);
 
@@ -42,6 +42,8 @@ const AuthPage = () => {
       setError(err.message);
     }
   };
+
+  if (loading) return null; // <-- or a spinner/loading screen
 
   return (
     <div className="min-h-screen bg-gradient-to-br bg-teal-50 flex items-center justify-center px-4">
