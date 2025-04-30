@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
-import { useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logo from '../assets/logo.png';
 
@@ -29,14 +28,31 @@ const Navbar = () => {
 
   return (
     <nav className="bg-teal-700 text-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <img src={ logo } className="h-21" />
+      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center md:justify-between">
+        {/* Mobile View */}
+        <div className="flex w-full items-center justify-between md:hidden relative">
+          {/* Hamburger Left */}
+          <button onClick={toggleMenu}>
+            {menuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
 
-        {/* Right Section */}
-        <div className="flex items-center space-x-4">
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-4 text-lg items-center">
+          {/* Centered Logo */}
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <img src={logo} className="h-20" alt="QuickThink Logo" />
+          </div>
+
+          {/* Profile Right */}
+          <div className="w-10 h-10 bg-white text-teal-600 text-xl font-bold flex items-center justify-center rounded-full shadow">
+            {firstLetter}
+          </div>
+        </div>
+
+        {/* Desktop View */}
+        <div className="hidden md:flex justify-between items-center w-full">
+          {/* Logo */}
+          <img src={logo} className="h-20" alt="QuickThink Logo" />
+
+          <div className="flex items-center space-x-4">
             <Link to="/home" className="hover:text-yellow-300 text-xl transition">
               Home
             </Link>
@@ -52,18 +68,10 @@ const Navbar = () => {
             >
               Logout
             </button>
-          </div>
 
-          {/* Profile Circle (Always visible) */}
-          <div className="w-12 h-12 bg-white text-2xl text-teal-600 font-bold flex items-center justify-center rounded-full shadow">
-            {firstLetter}
-          </div>
-
-          {/* Hamburger (only visible on mobile) */}
-          <div className="md:hidden">
-            <button onClick={toggleMenu}>
-              {menuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
+            <div className="w-10 h-10 bg-white text-teal-600 text-xl font-bold flex items-center justify-center rounded-full shadow">
+              {firstLetter}
+            </div>
           </div>
         </div>
       </div>

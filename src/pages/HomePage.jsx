@@ -31,7 +31,7 @@ const HomePage = () => {
           </p>
           <button
             onClick={handleStart}
-            className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold py-3 px-8 rounded-full shadow-md hover:scale-105 transition-transform duration-300"
+            className="bg-gradient-to-r from-emerald-500 to-teal-700 text-white font-semibold py-3 px-8 rounded-xl shadow-md hover:scale-105 transition-transform duration-200"
           >
             TAKE QUIZ
           </button>

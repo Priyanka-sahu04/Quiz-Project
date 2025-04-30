@@ -1,4 +1,3 @@
-// SavedQuizzes.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +20,7 @@ const SavedQuizzes = ({ setQuizData }) => {
   };
 
   const handleStartQuiz = (quiz) => {
-    setQuizData(quiz.quizData); // 👈 inject the full quiz data
+    setQuizData(quiz.quizData);
     setTimeout(() => {
       navigate("/quiz", {
         state: {
@@ -34,40 +33,46 @@ const SavedQuizzes = ({ setQuizData }) => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold text-center mb-6">Saved Quizzes</h2>
+    <div className="p-6 min-h-screen bg-gradient-to-br from-blue-50 to-purple-100">
+      <h2 className="text-3xl font-bold text-center text-purple-800 mb-8">Saved Quizzes</h2>
 
       {savedQuizzes.length === 0 ? (
         <p className="text-center text-gray-500">No quizzes saved yet!</p>
       ) : (
-        <ul className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-4xl mx-auto gap-6 ">
           {savedQuizzes.map((quiz, index) => (
-            <li key={index} className="p-4 border rounded hover:bg-gray-50">
-              <p><strong>Topic:</strong> {quiz.topic}</p>
-              <p><strong>Difficulty:</strong> {quiz.difficulty}</p>
-              <p><strong>Number of Questions:</strong> {quiz.questionCount}</p>
-              <p className="text-sm text-gray-500">
-                <strong>Saved At:</strong> {new Date(quiz.timestamp).toLocaleString()}
+            <div
+              key={index}
+              className="bg-white rounded-2xl shadow-xl p-6 border border-purple-200"
+            >
+              <h3 className="text-xl font-semibold text-purple-700 mb-2">Quiz #{index + 1}</h3>
+
+              <p className="mb-1 text-lg text-gray-700"><span className="mr-1">🧠</span><strong>Topic:</strong> {quiz.topic}</p>
+              <p className="mb-1 text-lg text-gray-700"><span className="mr-1">🔥</span><strong>Difficulty:</strong> {quiz.difficulty}</p>
+              <p className="mb-1 text-lg text-gray-700"><span className="mr-1">❓</span><strong>Questions:</strong> {quiz.questionCount}</p>
+              <p className="mb-2 text-md text-gray-500">
+                <span className="mr-1">🕒</span>
+                <strong>Saved on:</strong> {new Date(quiz.timestamp).toLocaleString()}
               </p>
 
               <div className="flex gap-4 mt-4">
                 <button
                   onClick={() => handleStartQuiz(quiz)}
-                  className="flex-1 bg-green-500 text-white p-2 rounded hover:bg-green-700"
+                  className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-700 text-white py-2 rounded-xl font-semibold hover:scale-105 transition-transform duration-200"
                 >
-                  Start Quiz
+                  ▶ Start Quiz
                 </button>
 
                 <button
                   onClick={() => handleRemoveQuiz(index)}
-                  className="flex-1 bg-red-500 text-white p-2 rounded hover:bg-red-700"
+                  className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 rounded-xl font-semibold hover:scale-105 transition-transform duration-200"
                 >
-                  Remove
+                  🗑 Remove
                 </button>
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

@@ -78,7 +78,12 @@ const AuthPage = () => {
         <p className="mt-4 text-center text-gray-600">
           {isSignup ? 'Already have an account?' : "Don't have an account?"}{' '}
           <button
-            onClick={() => setIsSignup(!isSignup)}
+            onClick={() => {
+              setIsSignup(!isSignup);
+              setEmail('');
+              setPassword('');
+              setError('');
+            }}
             className="text-teal-600 font-semibold hover:underline"
           >
             {isSignup ? 'Login' : 'Sign Up'}
