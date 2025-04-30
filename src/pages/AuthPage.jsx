@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { auth } from '../firebase';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,6 +13,18 @@ const AuthPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  // ✅ Redirect if already logged in
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate('/home');
+      }
+    });
+
+    // Cleanup listener on unmount
+    return () => unsubscribe();
+  }, [navigate]);
 
   const handleAuth = async (e) => {
     e.preventDefault();

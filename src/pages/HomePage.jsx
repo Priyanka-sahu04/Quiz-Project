@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import quizImage from '../assets/quizImage.avif'
 
 const HomePage = () => {
@@ -11,8 +10,7 @@ const HomePage = () => {
   };
 
   return (
-    <div>
-      <Navbar />
+    
       <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-white px-6 md:px-20">
         {/* left Section */}
         <div className="md:w-1/2 w-full mt-10 md:mt-0 flex justify-center">
@@ -39,7 +37,6 @@ const HomePage = () => {
           </button>
         </div>
       </div>
-    </div>
   );
 };
 

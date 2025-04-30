@@ -1,94 +1,74 @@
-// src/pages/SavedQuizzes.jsx
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Trash2, Play } from 'lucide-react';
-import Navbar from '../components/Navbar';
+// SavedQuizzes.jsx
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const SavedQuizzes = () => {
+const SavedQuizzes = ({ setQuizData }) => {
+  const [savedQuizzes, setSavedQuizzes] = useState([]);
   const navigate = useNavigate();
-  const [quizzes, setQuizzes] = useState(
-    JSON.parse(localStorage.getItem('savedQuizzes')) || []
-  );
 
-  const handleStart = (quiz) => {
-    localStorage.setItem('quizData', JSON.stringify(quiz.questions));
-    navigate('/quiz');
-  };
+  useEffect(() => {
+    const quizzesFromStorage = JSON.parse(localStorage.getItem("savedQuizzes")) || [];
+    setSavedQuizzes(quizzesFromStorage);
+  }, []);
 
-  const handleRemove = (id) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this quiz?');
+  const handleRemoveQuiz = (index) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this quiz?");
     if (confirmDelete) {
-      const updated = quizzes.filter((quiz) => quiz.id !== id);
-      setQuizzes(updated);
-      localStorage.setItem('savedQuizzes', JSON.stringify(updated));
+      const updatedQuizzes = savedQuizzes.filter((_, i) => i !== index);
+      setSavedQuizzes(updatedQuizzes);
+      localStorage.setItem("savedQuizzes", JSON.stringify(updatedQuizzes));
     }
   };
 
-  const createQuiz = () => {
-    navigate('/quiz-form'); // Change route based on your setup page
-  };
-
-  const categoryMap = {
-    "18": "Science: Computers",
-    "9": "General Knowledge",
-    "21": "Sports",
-    "23": "History",
-    "17": "Science & Nature",
-    "22": "Geography",
-    "11": "Film",
-    "12": "Music",
-    "15": "Video Games",
-    "19": "Science: Mathematics",
+  const handleStartQuiz = (quiz) => {
+    setQuizData(quiz.quizData); // 👈 inject the full quiz data
+    setTimeout(() => {
+      navigate("/quiz", {
+        state: {
+          topic: quiz.topic,
+          difficulty: quiz.difficulty,
+          quizTime: quiz.quizTime,
+        },
+      });
+    }, 100);
   };
 
   return (
-    <div>
-      <Navbar />
-      <div className="p-6 max-w-5xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-center text-indigo-700 mb-8">📚 Saved Quizzes</h2>
+    <div className="w-full max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold text-center mb-6">Saved Quizzes</h2>
 
-        {quizzes.length === 0 ? (
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-center text-gray-600 text-lg">No saved quizzes found.</p>
-            <button
-              onClick={createQuiz}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transform transition duration-300"
-            >
-              Start Quiz
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {quizzes.map((quiz, idx) => (
-              <div
-                key={quiz.id}
-                className="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 transition hover:shadow-xl"
-              >
-                <h3 className="text-xl font-bold text-indigo-600 mb-2">Quiz #{idx + 1}</h3>
-                <p className="text-gray-700 text-xl"><span className="font-semibold">🧠 Topic:</span> {categoryMap[quiz.topic] || quiz.topic}</p>
-                <p className="text-gray-700 text-xl"><span className="font-semibold">🔥 Difficulty:</span> {quiz.difficulty}</p>
-                <p className="text-gray-700 text-xl"><span className="font-semibold">❓ Questions:</span> {quiz.count}</p>
-                <p className="text-gray-700 text-xl"><span className="font-semibold">🕒 Saved on:</span> {new Date(quiz.timestamp).toLocaleString()}</p>
+      {savedQuizzes.length === 0 ? (
+        <p className="text-center text-gray-500">No quizzes saved yet!</p>
+      ) : (
+        <ul className="space-y-4">
+          {savedQuizzes.map((quiz, index) => (
+            <li key={index} className="p-4 border rounded hover:bg-gray-50">
+              <p><strong>Topic:</strong> {quiz.topic}</p>
+              <p><strong>Difficulty:</strong> {quiz.difficulty}</p>
+              <p><strong>Number of Questions:</strong> {quiz.questionCount}</p>
+              <p className="text-sm text-gray-500">
+                <strong>Saved At:</strong> {new Date(quiz.timestamp).toLocaleString()}
+              </p>
 
-                <div className="mt-5 flex justify-between">
-                  <button
-                    onClick={() => handleStart(quiz)}
-                    className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
-                  >
-                    <Play size={18} /> Start Quiz
-                  </button>
-                  <button
-                    onClick={() => handleRemove(quiz.id)}
-                    className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
-                  >
-                    <Trash2 size={18} /> Remove
-                  </button>
-                </div>
+              <div className="flex gap-4 mt-4">
+                <button
+                  onClick={() => handleStartQuiz(quiz)}
+                  className="flex-1 bg-green-500 text-white p-2 rounded hover:bg-green-700"
+                >
+                  Start Quiz
+                </button>
+
+                <button
+                  onClick={() => handleRemoveQuiz(index)}
+                  className="flex-1 bg-red-500 text-white p-2 rounded hover:bg-red-700"
+                >
+                  Remove
+                </button>
               </div>
-            ))}
-          </div>
-        )}
-      </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
